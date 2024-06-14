@@ -1,8 +1,8 @@
-# [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=33&pause=1000&color=F07025&width=435&lines=Dressify;React+Application;)](https://git.io/typing-svg)
+# [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=33&pause=1000&color=F07025&width=435&lines=Ticket+Booking+Dashboard;React+Application;)](https://git.io/typing-svg)
 
 ## Introduction
 
-This is a e-commerce website. User can see all product and add their product. And they can maintain their product and for maintaining they have a dashboard.
+This is a Ticket Booking Dashboard. User can see all events and add their event. And they can maintain their event on this dashboard.
 
 ## Tech Stack
 
@@ -14,12 +14,11 @@ This is a e-commerce website. User can see all product and add their product. An
 
 ## Features
 
-- **Add a New Product** 
-- **GET All Products** 
-- **GET Specific Product by ID** 
-- **Update Product Information** 
-- **Delete a Product** 
-- **Search for Products**
+- **Add a New Event** 
+- **Retrieved All Events** 
+- **GET Specific Event by ID** 
+- **Delete a Event** 
+- **Search for Events**
 
 ## Quick Start
 
@@ -37,8 +36,8 @@ Make sure you have the following installed on your machine:
 ### 📂 Clone the Repository
 
 ```bash
-git clone https://github.com/Sakib-Atreus/Dressify
-cd dressify-client and dressify-server open in two directory
+git clone https://github.com/Sakib-Atreus/Ticket-Booking-Dashboard
+cd ticket-booking-dashboard-client and ticket-booking-dashboard-server open in two directory
 ```
 
 ### 📦 Install Dependencies
@@ -54,7 +53,8 @@ Create a `.env` file in the root of your project and add essential environment v
 **For server side
 ```bash
 PORT="setup a port"  // example: PORT: 5000
-DB_URI="setup your mongodb url"
+DB_URL="setup your mongodb url with username and password"
+ACCESS_TOKEN="setup your own json web token" 
 ```
 
 **For client side
