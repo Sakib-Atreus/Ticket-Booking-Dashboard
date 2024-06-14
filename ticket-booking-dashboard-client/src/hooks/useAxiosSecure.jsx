@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import useAuth from './useAuth';
+import { useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:5000/',
+  baseURL: "https://ticket-booking-dashboard-server.vercel.app/",
 });
 
 const useAxiosSecure = () => {
@@ -13,7 +13,7 @@ const useAxiosSecure = () => {
 
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
-      const token = localStorage.getItem('set-token-for-user');
+      const token = localStorage.getItem("set-token-for-user");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -23,9 +23,12 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use(
       (response) => response,
       async (error) => {
-        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+        if (
+          error.response &&
+          (error.response.status === 401 || error.response.status === 403)
+        ) {
           await logOut();
-          navigate('/login');
+          navigate("/login");
         }
         return Promise.reject(error);
       }

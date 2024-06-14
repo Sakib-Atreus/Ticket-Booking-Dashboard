@@ -3,37 +3,40 @@ import { AuthContext } from "../Providers/AuthProviders";
 import { useLoaderData } from "react-router-dom";
 
 const EventDetails = () => {
-    const event = useLoaderData();
-    const user = useContext(AuthContext);
+  const event = useLoaderData();
+  const user = useContext(AuthContext);
   const { name, image, price, eventDetails } = event;
-  const email  = user?.user?.email;
-  
-//   console.log(user.user)
-//   console.log(user?.user?.email)
+  const email = user?.user?.email;
+
+  //   console.log(user.user)
+  //   console.log(user?.user?.email)
 
   const [bookingStatus, setBookingStatus] = useState(null);
 
   const handleBookNow = async () => {
     try {
-      const response = await fetch("http://localhost:5000/bookEvent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          image,
-          price,
-          eventDetails,
-        }),
-      });
+      const response = await fetch(
+        "https://ticket-booking-dashboard-server.vercel.app/bookEvent",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            image,
+            price,
+            eventDetails,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to book event");
       }
 
-        await response.json();
+      await response.json();
       setBookingStatus("Booking successful!");
     } catch (error) {
       setBookingStatus("Booking failed. Please try again.");
@@ -49,7 +52,9 @@ const EventDetails = () => {
         <div className="text-left items-start">
           <h1 className="text-5xl font-bold my-12">{name}</h1>
           <h3 className="text-2xl font-semibold my-2">Price: ${price}</h3>
-          <p className="text-xl text-gray-400 mt-6 font-medium my-2">{eventDetails}</p>
+          <p className="text-xl text-gray-400 mt-6 font-medium my-2">
+            {eventDetails}
+          </p>
           <button
             onClick={handleBookNow}
             className="btn bg-green-700 text-white text-xl font-semibold my-12 px-4 py-2"
@@ -57,7 +62,13 @@ const EventDetails = () => {
             Book Now
           </button>
           {bookingStatus && (
-            <p className={`mt-4 text-lg ${bookingStatus.includes("successful") ? "text-green-600" : "text-red-600"}`}>
+            <p
+              className={`mt-4 text-lg ${
+                bookingStatus.includes("successful")
+                  ? "text-green-600"
+                  : "text-red-600"
+              }`}
+            >
               {bookingStatus}
             </p>
           )}

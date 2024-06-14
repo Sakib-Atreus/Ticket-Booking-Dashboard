@@ -12,7 +12,7 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -29,7 +29,7 @@ const SignUp = () => {
             image: data.photoURL,
           };
 
-          fetch("http://localhost:5000/user", {
+          fetch("https://ticket-booking-dashboard-server.vercel.app/user", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -61,7 +61,9 @@ const SignUp = () => {
       <div className="signup-page hero min-h-screen">
         <div className="hero-content flex-col-reverse lg:flex-row mt-16">
           <div className="card shrink-0 w-full max-w-sm shadow-2xl ">
-            <h1 className="text-4xl font-bold text-center m-2 text-green-500">SignUp</h1>
+            <h1 className="text-4xl font-bold text-center m-2 text-green-500">
+              SignUp
+            </h1>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -132,7 +134,9 @@ const SignUp = () => {
                   <p className="text-green-600">Password is required</p>
                 )}
                 {errors.password?.type === "minLength" && (
-                  <p className="text-green-600">Password must be 6 characters</p>
+                  <p className="text-green-600">
+                    Password must be 6 characters
+                  </p>
                 )}
                 {errors.password?.type === "maxLength" && (
                   <p className="text-green-600">

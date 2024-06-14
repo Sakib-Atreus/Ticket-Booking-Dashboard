@@ -8,7 +8,9 @@ const Bookings = () => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allBookedEvents/${user?.email}`)
+    fetch(
+      `https://ticket-booking-dashboard-server.vercel.app/allBookedEvents/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -18,7 +20,7 @@ const Bookings = () => {
 
   const handleSearch = () => {
     fetch(
-      `http://localhost:5000/searchText/${searchText}`
+      `https://ticket-booking-dashboard-server.vercel.app/searchText/${searchText}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -45,9 +47,12 @@ const Bookings = () => {
       confirmButtonTextColor: "black",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allBookedEvents/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://ticket-booking-dashboard-server.vercel.app/allBookedEvents/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -73,7 +78,10 @@ const Bookings = () => {
           className="p-1 rounded-lg bg-green-200 text-black"
           placeholder="Event Name "
         />{" "}
-        <button onClick={handleSearch} className="btn btn-sm bg-green-500 m-4 text-black hover:text-white">
+        <button
+          onClick={handleSearch}
+          className="btn btn-sm bg-green-500 m-4 text-black hover:text-white"
+        >
           Search
         </button>
         <table className="table w-full">
@@ -104,7 +112,11 @@ const Bookings = () => {
                   {index + 1}
                 </td>
                 <td className="flex justify-center text-center border-black text-black bg-green-200">
-                  <img className="rounded-full w-12 h-12" src={event?.image} alt="" />
+                  <img
+                    className="rounded-full w-12 h-12"
+                    src={event?.image}
+                    alt=""
+                  />
                 </td>
                 <td className="text-xl text-center border-black text-black bg-green-300 font-bold">
                   {event.name}

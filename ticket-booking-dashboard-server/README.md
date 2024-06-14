@@ -65,6 +65,7 @@ npm run dev (for client side)
 nodemon start (for server side)
 ```
 
+Live Server Site: https://ticket-booking-dashboard-server.vercel.app/
 
 ## 📧 Contact
 

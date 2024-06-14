@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import SingleEvent from './SingleEvent';
+import { useEffect, useState } from "react";
+import SingleEvent from "./SingleEvent";
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
@@ -10,9 +10,11 @@ const EventList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:5000/allEvents');
+        const response = await fetch(
+          "https://ticket-booking-dashboard-server.vercel.app/allEvents"
+        );
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setEvents(data);
@@ -40,7 +42,9 @@ const EventList = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-5xl font-bold text-center text-green-500">All Event{"'"}s</h1>
+      <h1 className="text-5xl font-bold text-center text-green-500">
+        All Event{"'"}s
+      </h1>
       <div className="text-center mt-6">
         <input
           onChange={(e) => setSearchText(e.target.value)}

@@ -8,8 +8,8 @@ import SectionTitle from "../components/SectionTitle/SectionTitle";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const AddEvent = () => {
-    const { user } = useContext(AuthContext);
-    const [axiosSecure] = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
   const {
     register,
@@ -38,20 +38,24 @@ const AddEvent = () => {
             eventDetails,
           };
           console.log(newItem);
-          axiosSecure.post('http://localhost:5000/addEvent', newItem)
-          .then(data => {
-            console.log('After posting new menu item', data.data);
-            if(data.data.insertedId){
+          axiosSecure
+            .post(
+              "https://ticket-booking-dashboard-server.vercel.app/addEvent",
+              newItem
+            )
+            .then((data) => {
+              console.log("After posting new menu item", data.data);
+              if (data.data.insertedId) {
                 reset();
                 Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Item added successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-            }
-          })
+                  position: "top-end",
+                  icon: "success",
+                  title: "Item added successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+            });
         }
       });
   };
@@ -78,20 +82,20 @@ const AddEvent = () => {
               className="input input-bordered w-full "
             />
           </label>
-          
+
           <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4 text-white">
-          <label className="form-control w-full ">
-            <div className="label">
-              <span className="label-text">Your Email*</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Type Here Your Email"
-              {...register("email", { required: true, maxLength: 120 })}
-              defaultValue={user?.email}
-              className="input input-bordered w-full text-white"
-            />
-          </label>
+            <label className="form-control w-full ">
+              <div className="label">
+                <span className="label-text">Your Email*</span>
+              </div>
+              <input
+                type="text"
+                placeholder="Type Here Your Email"
+                {...register("email", { required: true, maxLength: 120 })}
+                defaultValue={user?.email}
+                className="input input-bordered w-full text-white"
+              />
+            </label>
             <label className="form-control w-full ">
               <div className="label">
                 <span className="label-text">Ticket Price*</span>
@@ -104,15 +108,15 @@ const AddEvent = () => {
               />
             </label>
             <label className="form-control w-full ">
-            <div className="label">
-              <span className="label-text">Event Image*</span>
-            </div>
-            <input
-              type="file"
-              {...register("image", { required: true })}
-              className="file-input file-input-bordered w-full "
-            />
-          </label>
+              <div className="label">
+                <span className="label-text">Event Image*</span>
+              </div>
+              <input
+                type="file"
+                {...register("image", { required: true })}
+                className="file-input file-input-bordered w-full "
+              />
+            </label>
           </div>
           <label className="form-control">
             <div className="label">
@@ -124,7 +128,7 @@ const AddEvent = () => {
               placeholder="Type Here of Event Details"
             ></textarea>
           </label>
-          
+
           <input
             type="submit"
             className="btn btn-sm mt-8 bg-green-600 text-white font-semibold text-lg px-8"
