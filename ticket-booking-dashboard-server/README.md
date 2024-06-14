@@ -57,11 +57,6 @@ DB_URL="setup your mongodb url with username and password"
 ACCESS_TOKEN="setup your own json web token" 
 ```
 
-**For client side
-```bash
-***Setup firebase config 
-```
-
 
 ### 🚀 Start the Application
 
